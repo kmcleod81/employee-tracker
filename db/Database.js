@@ -1,7 +1,7 @@
 // Capital letter for Class
 
-const connection = require('.connection');
-
+const connection = require('./connection');
+const inquirer = require("inquirer");
 class Database {
 
     constructor(connection) {
@@ -43,3 +43,5 @@ class Database {
         );
     }
 }
+
+module.exports = Database;
