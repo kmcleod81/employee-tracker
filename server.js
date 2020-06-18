@@ -2,7 +2,6 @@ const inquirer = require('inquirer');
 const Database = require('./db/Database');
 const newDB = new Database();
 const connection = require('./db/connection');
-const { end } = require('./db/connection');
 
 // create a prompt when the app is started
 // this will ask the user what they'd like to do
@@ -32,6 +31,3 @@ const startQuestion = [
 
 // switch or if statement
 // handles response and calls function
-
-
-start();
