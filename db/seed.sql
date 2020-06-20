@@ -23,4 +23,4 @@ VALUES
 ("Daniel", "Ostojak", 1, null), 
 ("Karla", "McLeod", 5, null), 
 ("Karla", "Marcotte", 2, 1), 
-("Marilyn", "McLeod", 3, null);
+("Marilyn", "McLeod", 3, null)

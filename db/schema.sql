@@ -25,7 +25,6 @@ USE employee_db;
     PRIMARY KEY (id)
 );
 
-
 -- create an employees table
     -- id - INT PRIMARY KEY
     -- first_name - VARCHAR(30) to hold employee first name

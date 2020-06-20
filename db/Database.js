@@ -8,6 +8,7 @@ class Database {
         this.connection = connection;
     }
 
+
     createDepartment() {
         return this.connection.query(
 
