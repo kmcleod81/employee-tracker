@@ -8,22 +8,53 @@ class Database {
         this.connection = connection;
     }
 
-
-    createDepartment() {
+    createDepartment(department) {
         return this.connection.query(
-
+            'INSERT INTO department SET ?',
+            {
+                department: department.name,
+            },
+            (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log(res.affectedRows + 'Department created!\n');
+            }
         );
     }
 
-    createEmployee() {
+    createEmployee(employee) {
         return this.connection.query(
-
+            'INSERT INTO employee SET ?',
+            {
+                first_name: employee.first_name,
+                last_name: employee.last_name,
+                role_id: employee.role_id,
+                manager_id: employee.manager_id,
+            },
+            (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log(res.affectedRows + 'Employee created!\n');
+            }
         );
     }
 
-    createRole() {
+    createRole(role) {
         return this.connection.query(
-
+            'INSERT INTO role SET ?',
+            {
+                title: role.title,
+                salary: role.salary,
+                department_id: role.department_id,
+            },
+            (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log(res.affectedRows + 'Role created!\n');
+            }
         );
     }
 
@@ -34,7 +65,7 @@ class Database {
     }
     findEmployee() {
         return this.connection.query(
-
+            "SELECT id, first_name, last_name FROM EMPLOYEE"
         );
     }
 
