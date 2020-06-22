@@ -2,78 +2,114 @@
 
 const connection = require('./connection');
 const inquirer = require("inquirer");
+
 class Database {
 
     constructor(connection) {
         this.connection = connection;
     }
 
-    createDepartment(department) {
+    addDepartment() {
+        inquirer.prompt({
+            type: "input",
+            name: "newDepartment",
+            message: "Enter New Department",
+        })
+            .then((answer) => {
+                const existingDepartments = [];
+                this.connection.query(
+                    "SELECT department FROM department",
+                    (err, result) => {
+                        if (err) throw err;
+                        result.forEach((department) => {
+                            existingDepartments.push(department.department);
+                        })
+                        this.addDepartment();
+                    }
+                )
+            })
+        this.quit();
+    }
+
+
+    addEmployee(employee) {
         return this.connection.query(
-            'INSERT INTO department SET ?',
-            {
-                department: department.name,
-            },
-            (err) => {
+            // 'INSERT INTO employee SET ?',
+            // {
+            //     first_name: employee.first_name,
+            //     last_name: employee.last_name,
+            //     role_id: employee.role_id,
+            //     manager_id: employee.manager_id,
+            // },
+            // (err) => {
+            //     if (err) {
+            //         throw err;
+            //     }
+            //     console.log(res.affectedRows + 'Employee created!\n');
+            // }
+        );
+    }
+
+    addRole(role) {
+        return this.connection.query(
+            /*       'INSERT INTO role SET ?',
+                  {
+                      title: role.title,
+                      salary: role.salary,
+                      department_id: role.department_id,
+                  },
+                  (err) => {
+                      if (err) {
+                          throw err;
+                      }
+                      console.log(res.affectedRows + 'Role created!\n');
+                  } */
+        );
+    }
+
+    viewDepartments() {
+        this.connection.query("SELECT * FROM department", (err, result) => {
+            if (err) throw err;
+            console.table(result);
+        });
+        this.quit();
+    }
+
+    viewEmployees() {
+        this.connection.query(
+            "SELECT employee.id, employee.first_name, employee.last_name, role.salary, department.department, role.title, employee.manager_id FROM employee LEFT JOIN role ON (employee.role_id=role.id) LEFT JOIN department ON (role.department_id=department.id);",
+            (err, results) => {
                 if (err) {
                     throw err;
                 }
-                console.log(res.affectedRows + 'Department created!\n');
+                console.table(results);
             }
         );
+        this.quit();
     }
 
-    createEmployee(employee) {
-        return this.connection.query(
-            'INSERT INTO employee SET ?',
-            {
-                first_name: employee.first_name,
-                last_name: employee.last_name,
-                role_id: employee.role_id,
-                manager_id: employee.manager_id,
-            },
-            (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log(res.affectedRows + 'Employee created!\n');
+    viewRoles() {
+        this.connection.query(
+            "SELECT id, title, salary FROM role",
+            (err, result) => {
+                if (err) throw err;
+                console.table(result);
             }
         );
+        this.quit();
     }
 
-    createRole(role) {
-        return this.connection.query(
-            'INSERT INTO role SET ?',
-            {
-                title: role.title,
-                salary: role.salary,
-                department_id: role.department_id,
-            },
-            (err) => {
-                if (err) {
-                    throw err;
-                }
-                console.log(res.affectedRows + 'Role created!\n');
-            }
-        );
-    }
-
-    findDepartment() {
+    updateEmployees() {
         return this.connection.query(
 
         );
     }
-    findEmployee() {
-        return this.connection.query(
-            "SELECT id, first_name, last_name FROM EMPLOYEE"
-        );
+
+    quit() {
+        this.connection.end();
     }
 
-    findRole() {
-        return this.connection.query(
-
-        );
-    }
 }
+
 
 module.exports = Database;

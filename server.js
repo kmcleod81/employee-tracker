@@ -13,14 +13,13 @@ const startQuestion = [
         name: "choices",
         message: "What would you like to do?",
         choices: [
-            "View All Employees",
-            "View All Employees by Department",
-            "Add Employee",
-            "Remove Employee",
-            "Update Employee Role",
             "Add Department",
             "Add Role",
-            "Update an Employee's Manager",
+            "Add Employee",
+            "View Departments",
+            "View Roles",
+            "View Employees",
+            "Update Employee Role",
             "Quit"
         ]
     }
@@ -28,29 +27,25 @@ const startQuestion = [
 
 const start = () => {
     inquirer.prompt(startQuestion).then((answer) => {
-        if (answer.choices === "View All Employees") {
-            newDB.viewEmployees();
-        } else if (answer.choices === "View All Employees by Department") {
-            newDB.findEmployeesByDepartment();
+
+        if (answer.choices === "Add Department") {
+            newDB.addDepartment();
+        } else if (answer.choices === "Add Role") {
+            newDB.addRole();
         } else if (answer.choices === "Add Employee") {
-            newDB.createEmployee();
-        } else if (answer.choices === "Remove Employee") {
-            newDB.removeEmployee();
+            newDB.addEmployee();
+        } else if (answer.choices === "View Departments") {
+            newDB.viewDepartments();
+        } else if (answer.choices === "View Roles") {
+            newDB.viewRoles();
+        } else if (answer.choices === "View Employees") {
+            newDB.viewEmployees();
         } else if (answer.choices === "Update Employee Role") {
             newDB.updateEmployeeRole();
-        } else if (answer.choices === "Add Department") {
-            newDB.createDepartment();
-        } else if (answer.choices === "Add Role (please note: if the role is in a new department, the department must be created first.)") {
-            newDB.createRole();
-        } else if (answer.choices === "View all departments") {
-            newDB.viewDepartments();
-        } else if (answer.choices === "View all roles/titles") {
-            newDB.viewRoles();
         } else {
             newDB.quit();
             return;
         }
-
     });
 };
 start();

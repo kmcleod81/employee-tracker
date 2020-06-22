@@ -1,7 +1,5 @@
-DROP DATABASE IF EXISTS employee_db;
-CREATE DATABASE employee_db;
 
-USE employee_db;
+USE afciz2rmhtuigunv;
 
 -- create a department table
     -- id - INT PRIMARY KEY
