@@ -18,7 +18,7 @@ This application is used to add, update and delete departments, roles and employ
 run: `npm install` in your terminal/bash, then `node server`
 
 ## Usage
-The user will be promted to select what they want to do. Based on the users seletions, they will be prompted different questions to add, update and delete information into a database.
+The user will be prompted to select what they want to do with a series of questions. Based on the users seletions, they will be prompted different options to add, update and delete information into a database.
 
 ## Contributors
 * **Karla McLeod** - [kmcleod81](https://github.com/kmcleod81)
