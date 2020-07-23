@@ -1,5 +1,5 @@
 
-USE afciz2rmhtuigunv;
+USE employees_db;
 
 -- create a department table
     -- id - INT PRIMARY KEY

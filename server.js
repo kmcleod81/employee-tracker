@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const Database = require('./db/Database');
 const newDB = new Database();
-const connection = require('./db/connection');
 
 // create a prompt when the app is started
 // this will ask the user what they'd like to do
@@ -20,6 +19,7 @@ const startQuestion = [
             "View Roles",
             "View Employees",
             "Update Employee Role",
+            "Remove Employee",
             "Quit"
         ]
     }
@@ -42,6 +42,8 @@ const start = () => {
             newDB.viewEmployees();
         } else if (answer.choices === "Update Employee Role") {
             newDB.updateEmployeeRole();
+        } else if (answer.choices === "Remove Employee") {
+            newDB.removeEmployee();
         } else {
             newDB.quit();
             return;
